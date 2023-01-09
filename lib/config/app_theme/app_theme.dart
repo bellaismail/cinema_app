@@ -11,6 +11,10 @@ class AppTheme {
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           type: BottomNavigationBarType.fixed,
         ),
+        appBarTheme: AppBarTheme(
+          centerTitle: true,
+          backgroundColor: AppColors.scaffoldColor.withOpacity(0.1),
+        ),
         textTheme: TextTheme(
           displayLarge: GoogleFonts.aBeeZee(
             color: AppColors.textColor,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clean_arch/core/utils/app_numbers.dart';
 import 'package:flutter_clean_arch/core/utils/app_strings.dart';
 import 'package:flutter_clean_arch/core/utils/media_query_values.dart';
+import 'package:flutter_clean_arch/features/movies/presentation/screens/movie_popular_screen.dart';
 import 'package:flutter_clean_arch/features/movies/presentation/widgets/home_now_playing.dart';
 import 'package:flutter_clean_arch/core/sahred_component/row_description.dart';
 import 'package:flutter_clean_arch/features/movies/presentation/widgets/top_rated_list_widget.dart';
@@ -17,9 +18,16 @@ class HomeScreen extends StatelessWidget {
       body: ListView(
         children: [
           const HomeNowPlayingWiget(),
-          SizedBox(height: MediaQueryValues(context: context).height / 40.h),
           RowDescription(
-              categoryText: AppStrings.popularText, navigatorFun: () {}),
+              categoryText: AppStrings.popularText,
+              navigatorFun: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MoviePopularScreen(),
+                  ),
+                );
+              }),
           SizedBox(
             width: double.infinity,
             height: AppNumbers.homeHeightHorizontalList.h,

@@ -50,7 +50,6 @@ class MovieCubit extends Cubit<MovieStates> {
     Either<Failure, List<Movie>> response =
         await getIt<BaseGetPopularMoviesUseCase>().excute();
     response.fold((l) {
-      print('=== popular:=> ${l.message} ===');
       emit(GetPopularError(messageError: l.message));
       popularStatus = DataStatus.fail;
     }, (r) {
@@ -65,7 +64,6 @@ class MovieCubit extends Cubit<MovieStates> {
     Either<Failure, List<Movie>> response =
         await getIt<BaseGetTopRatedMoviesUseCase>().excute();
     response.fold((l) {
-      print('=== Top:=> ${l.message} ===');
       emit(GetTopRatedError(messageError: l.message));
       topRatedstatus = DataStatus.fail;
     }, (r) {

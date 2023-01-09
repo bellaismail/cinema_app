@@ -6,4 +6,5 @@ class AppColors {
   static const Color textColor = Colors.white /*Color(0xffC9C9C9)*/;
   static Color bottomNavBar = Colors.black.withOpacity(0.8);
   static const Color redCircleColor = Colors.redAccent;
+  static const Color starColor = Colors.amber;
 }
