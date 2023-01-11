@@ -4,13 +4,14 @@ import 'package:flutter_clean_arch/core/utils/app_colors.dart';
 import 'package:flutter_clean_arch/core/utils/app_numbers.dart';
 import 'package:flutter_clean_arch/core/utils/media_query_values.dart';
 import 'package:flutter_clean_arch/features/movies/domain/enitities/movie.dart';
-import 'package:flutter_clean_arch/features/movies/presentation/cubit/cubit.dart';
-import 'package:flutter_clean_arch/features/movies/presentation/cubit/state.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scale_button/scale_button.dart';
 import '../../../../core/sahred_component/movie_and_tv_card.dart';
 import '../../../../core/utils/app_strings.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../cubit/movie_cubit.dart';
+import '../cubit/movie_state.dart';
 
 class MovieScreen extends StatelessWidget {
   const MovieScreen({super.key, required this.movie, required this.heroTag});
@@ -19,6 +20,7 @@ class MovieScreen extends StatelessWidget {
   final String heroTag;
   @override
   Widget build(BuildContext context) {
+    print('@@@@ movieScreen @@@@');
     return Scaffold(
       backgroundColor: AppColors.seconsScaffoldColor,
       body: BlocConsumer<MovieCubit, MovieStates>(

@@ -9,11 +9,9 @@ class Layout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('*** layout ***');
     return BlocConsumer<LayoutCubit, LayoutStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        print('*** Layout ***');
         LayoutCubit cubit = LayoutCubit.get(context);
         return Scaffold(
           body: cubit.layoutBodyWidgets[cubit.currentIndex],

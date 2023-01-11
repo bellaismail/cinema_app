@@ -2,17 +2,17 @@ import 'package:animate_do/animate_do.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_clean_arch/core/utils/app_numbers.dart';
 import 'package:flutter_clean_arch/core/utils/app_strings.dart';
 import 'package:flutter_clean_arch/core/utils/enums.dart';
-import 'package:flutter_clean_arch/features/movies/presentation/cubit/cubit.dart';
-import 'package:flutter_clean_arch/features/movies/presentation/cubit/state.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import '../../../../config/services/service_locator.dart';
 import '../../../../core/sahred_component/movie_and_tv_card.dart';
 import '../../../../core/sahred_component/shared_error_widget.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/media_query_values.dart';
+import '../cubit/movie_cubit.dart';
+import '../cubit/movie_state.dart';
 
 class HomeNowPlayingWiget extends StatelessWidget {
   const HomeNowPlayingWiget({super.key});

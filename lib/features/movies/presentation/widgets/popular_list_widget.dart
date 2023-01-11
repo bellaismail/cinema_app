@@ -5,11 +5,11 @@ import 'package:flutter_clean_arch/core/sahred_component/shared_error_widget.dar
 import 'package:flutter_clean_arch/core/sahred_component/shimmer_movie_container.dart';
 import 'package:flutter_clean_arch/core/utils/app_numbers.dart';
 import 'package:flutter_clean_arch/core/utils/enums.dart';
-import 'package:flutter_clean_arch/features/movies/presentation/cubit/cubit.dart';
-import 'package:flutter_clean_arch/features/movies/presentation/cubit/state.dart';
 import 'package:flutter_clean_arch/features/movies/presentation/screens/movie_Screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/utils/app_strings.dart';
+import '../cubit/movie_cubit.dart';
+import '../cubit/movie_state.dart';
 
 class PopularListWidget extends StatelessWidget {
   const PopularListWidget({

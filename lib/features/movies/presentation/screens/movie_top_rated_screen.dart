@@ -7,11 +7,12 @@ import 'package:flutter_clean_arch/core/utils/app_colors.dart';
 import 'package:flutter_clean_arch/core/utils/app_numbers.dart';
 import 'package:flutter_clean_arch/core/utils/app_strings.dart';
 import 'package:flutter_clean_arch/core/utils/enums.dart';
-import 'package:flutter_clean_arch/features/movies/presentation/cubit/cubit.dart';
-import 'package:flutter_clean_arch/features/movies/presentation/cubit/state.dart';
 import 'package:flutter_clean_arch/features/movies/presentation/screens/movie_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+
+import '../cubit/movie_cubit.dart';
+import '../cubit/movie_state.dart';
 
 class MovieTopRatedScreen extends StatelessWidget {
   const MovieTopRatedScreen({super.key});

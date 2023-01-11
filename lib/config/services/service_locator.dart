@@ -5,6 +5,7 @@ import 'package:flutter_clean_arch/features/movies/domain/repository/base_movie_
 import 'package:flutter_clean_arch/features/movies/domain/usecases/get_now_playing_movies_usecase.dart';
 import 'package:flutter_clean_arch/features/movies/domain/usecases/get_popular_movies_usecase.dart';
 import 'package:flutter_clean_arch/features/movies/domain/usecases/get_top_rated_movies_usecase.dart';
+import 'package:flutter_clean_arch/features/movies/presentation/cubit/movie_cubit.dart';
 
 import 'package:get_it/get_it.dart';
 
@@ -13,7 +14,10 @@ final getIt = GetIt.instance;
 class ServiceLocator {
   static void init(/*{BuildContext? context}*/) {
     // get Cubit
-    // getIt.registerFactory<MovieCubit>(() => MovieCubit.get(context));
+    getIt.registerLazySingleton<MovieCubit>(() => MovieCubit()
+      ..getNowplaying()
+      ..getPopular()
+      ..getTopRated());
 
     //movieREmoteDatasource
     getIt.registerLazySingleton<BaseMovieRemoteDataSource>(
@@ -28,13 +32,13 @@ class ServiceLocator {
         baseMovieRemoteDataSource: getIt(), baseMovieLocalDatasource: getIt()));
 
     //useCase
-    getIt.registerLazySingleton<BaseGetNowPlayingMoviesUsecase>(
+    getIt.registerLazySingleton<GetNowPlayingMoviesUsecase>(
         () => GetNowPlayingMoviesUsecase(baseMovieRepository: getIt()));
 
-    getIt.registerLazySingleton<BaseGetPopularMoviesUseCase>(
+    getIt.registerLazySingleton<GetPopularMoviesUseCase>(
         () => GetPopularMoviesUseCase(baseMovieRepository: getIt()));
 
-    getIt.registerLazySingleton<BaseGetTopRatedMoviesUseCase>(
+    getIt.registerLazySingleton<GetTopRatedMoviesUseCase>(
         () => GetTopRatedMoviesUseCase(baseMovieRepository: getIt()));
   }
 }

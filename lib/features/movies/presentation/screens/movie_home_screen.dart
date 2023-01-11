@@ -14,7 +14,6 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    print('*** home ***');
     return Scaffold(
       body: ListView(
         children: [

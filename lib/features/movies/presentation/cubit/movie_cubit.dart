@@ -6,10 +6,11 @@ import 'package:flutter_clean_arch/core/utils/app_strings.dart';
 import 'package:flutter_clean_arch/core/utils/enums.dart';
 import 'package:flutter_clean_arch/features/movies/domain/usecases/get_now_playing_movies_usecase.dart';
 import 'package:flutter_clean_arch/features/movies/domain/usecases/get_popular_movies_usecase.dart';
-import 'package:flutter_clean_arch/features/movies/presentation/cubit/state.dart';
 import 'package:flutter_clean_arch/config/services/service_locator.dart';
+import 'package:get_it/get_it.dart';
 import '../../domain/enitities/movie.dart';
 import '../../domain/usecases/get_top_rated_movies_usecase.dart';
+import 'movie_state.dart';
 
 class MovieCubit extends Cubit<MovieStates> {
   MovieCubit() : super(MovieInitState());
@@ -51,7 +52,8 @@ class MovieCubit extends Cubit<MovieStates> {
 
   Future<void> getNowplaying() async {
     emit(GetNowPlayingLoading());
-    var response = await getIt<BaseGetNowPlayingMoviesUsecase>().excute();
+    GetNowPlayingMoviesUsecase refernce = getIt<GetNowPlayingMoviesUsecase>();
+    Either<Failure, List<Movie>> response = await refernce();
     response.fold((l) {
       emit(GetNowPlayingError(errorMessage: l.message));
       nowPlayingstatus = DataStatus.fail;
@@ -64,8 +66,8 @@ class MovieCubit extends Cubit<MovieStates> {
 
   Future<void> getPopular() async {
     emit(GetPopularLoading());
-    Either<Failure, List<Movie>> response =
-        await getIt<BaseGetPopularMoviesUseCase>().excute();
+    GetPopularMoviesUseCase reference = getIt<GetPopularMoviesUseCase>();
+    Either<Failure, List<Movie>> response = await reference();
     response.fold((l) {
       emit(GetPopularError(errorMessage: l.message));
       popularStatus = DataStatus.fail;
@@ -78,8 +80,8 @@ class MovieCubit extends Cubit<MovieStates> {
 
   Future<void> getTopRated() async {
     emit(GetTopRatedLoading());
-    Either<Failure, List<Movie>> response =
-        await getIt<BaseGetTopRatedMoviesUseCase>().excute();
+    GetTopRatedMoviesUseCase reference = getIt<GetTopRatedMoviesUseCase>();
+    Either<Failure, List<Movie>> response = await reference();
     response.fold((l) {
       emit(GetTopRatedError(errorMessage: l.message));
       topRatedstatus = DataStatus.fail;

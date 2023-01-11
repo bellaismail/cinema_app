@@ -3,8 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_arch/config/app_theme/app_theme.dart';
 import 'package:flutter_clean_arch/config/data_helper/remote_data_helper.dart';
 import 'package:flutter_clean_arch/config/services/service_locator.dart';
-import 'package:flutter_clean_arch/features/movies/presentation/cubit/cubit.dart';
-import 'package:flutter_clean_arch/features/movies/presentation/screens/movie_popular_screen.dart';
+import 'package:flutter_clean_arch/features/movies/presentation/cubit/movie_cubit.dart';
 import 'package:flutter_clean_arch/layout_cubit/layout_cubit.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'config/bloc_observer/bloc_observer.dart';
@@ -29,10 +28,8 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => LayoutCubit()),
         BlocProvider(
-            create: (context) => MovieCubit()
-              ..getNowplaying()
-              ..getPopular()
-              ..getTopRated()),
+          create: (context) => getIt<MovieCubit>(),
+        ),
       ],
       child: ScreenUtilInit(
         builder: (context, child) {
