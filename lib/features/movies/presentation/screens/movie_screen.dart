@@ -168,6 +168,11 @@ class MovieScreen extends StatelessWidget {
                             reverse: true,
                             child: GestureDetector(
                               onTap: () {
+                                if (cubit.sliverAppBarHeight ==
+                                    AppNumbers.sliverHighHeight) {
+                                  cubit.sliverAppBarHeight =
+                                      AppNumbers.sliverLowHeight;
+                                }
                                 if (movie.id != cubit.popularList[index].id) {
                                   Navigator.pushReplacement(
                                     context,

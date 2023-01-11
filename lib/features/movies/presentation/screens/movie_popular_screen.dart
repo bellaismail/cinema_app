@@ -43,6 +43,10 @@ class MoviePopularScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
+                      if (cubit.sliverAppBarHeight ==
+                          AppNumbers.sliverHighHeight) {
+                        cubit.sliverAppBarHeight = AppNumbers.sliverLowHeight;
+                      }
                       Navigator.push(
                         context,
                         MaterialPageRoute(
