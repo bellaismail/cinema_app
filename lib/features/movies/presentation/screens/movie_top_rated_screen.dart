@@ -109,7 +109,8 @@ class MovieTopRatedScreen extends StatelessWidget {
                                         color: AppColors.redCircleColor,
                                         radius: AppNumbers.movieCardRadius / 2,
                                         widget: Text(
-                                          '2023',
+                                          cubit.getReleaseYear(cubit
+                                              .topRatedList[index].releaseDate),
                                           style: Theme.of(context)
                                               .textTheme
                                               .displaySmall,

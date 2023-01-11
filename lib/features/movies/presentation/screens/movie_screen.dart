@@ -83,7 +83,7 @@ class MovieScreen extends StatelessWidget {
                             color: AppColors.scaffoldColor,
                             radius: AppNumbers.movieCardRadius / 2,
                             widget: Text(
-                              '2023',
+                              cubit.getReleaseYear(movie.releaseDate),
                               textAlign: TextAlign.center,
                               style: Theme.of(context).textTheme.displaySmall,
                             ),

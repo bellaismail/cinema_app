@@ -43,6 +43,12 @@ class MovieCubit extends Cubit<MovieStates> {
     return errorMessageVar;
   }
 
+  String getReleaseYear(String date) {
+    String releaseYear = '';
+    releaseYear = date.split('-').first;
+    return releaseYear;
+  }
+
   Future<void> getNowplaying() async {
     emit(GetNowPlayingLoading());
     var response = await getIt<BaseGetNowPlayingMoviesUsecase>().excute();
