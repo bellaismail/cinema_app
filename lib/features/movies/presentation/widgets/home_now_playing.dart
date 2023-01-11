@@ -2,12 +2,14 @@ import 'package:animate_do/animate_do.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_clean_arch/core/utils/app_numbers.dart';
 import 'package:flutter_clean_arch/core/utils/app_strings.dart';
 import 'package:flutter_clean_arch/core/utils/enums.dart';
 import 'package:flutter_clean_arch/features/movies/presentation/cubit/cubit.dart';
 import 'package:flutter_clean_arch/features/movies/presentation/cubit/state.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import '../../../../core/sahred_component/movie_and_tv_card.dart';
 import '../../../../core/sahred_component/shared_error_widget.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/media_query_values.dart';
@@ -17,8 +19,13 @@ class HomeNowPlayingWiget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     MovieCubit cubit = MovieCubit.get(context);
+    String errorMessage = '';
     return BlocConsumer<MovieCubit, MovieStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is GetNowPlayingError) {
+          errorMessage = state.errorMessage!;
+        }
+      },
       builder: (context, state) {
         switch (cubit.nowPlayingstatus) {
           case DataStatus.isLoaded:
@@ -49,18 +56,11 @@ class HomeNowPlayingWiget extends StatelessWidget {
                             ],
                           ).createShader(rect);
                         },
-                        child: Container(
-                          margin: EdgeInsets.only(bottom: 10.0.h),
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                AppStrings.getImageUrl(cubit
-                                    .nowPlayingList[index].backDropPath
-                                    .toString()),
-                              ),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                        child: MovieAndTVCard(
+                          haveMargin: false,
+                          image: AppStrings.getImageUrl(cubit
+                              .nowPlayingList[index].backDropPath
+                              .toString()),
                         ),
                       ),
                     ),
@@ -108,10 +108,8 @@ class HomeNowPlayingWiget extends StatelessWidget {
               ),
             );
           case DataStatus.fail:
-            state as GetNowPlayingError;
             return SharedErrorWidget(
-              errorMessage:
-                  cubit.errorReturn(errorMessage: state.errorMessage!),
+              errorMessage: cubit.errorReturn(errorMessage: errorMessage),
               containerHeight: 330.h,
               containerWidth: double.infinity,
             );

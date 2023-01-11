@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_arch/core/error/failure.dart';
+import 'package:flutter_clean_arch/core/utils/app_numbers.dart';
 import 'package:flutter_clean_arch/core/utils/app_strings.dart';
 import 'package:flutter_clean_arch/core/utils/enums.dart';
 import 'package:flutter_clean_arch/features/movies/domain/usecases/get_now_playing_movies_usecase.dart';
@@ -15,12 +16,22 @@ class MovieCubit extends Cubit<MovieStates> {
 
   static MovieCubit get(context) => BlocProvider.of<MovieCubit>(context);
 
+  double sliverAppBarHeight = AppNumbers.sliverLowHeight;
   DataStatus nowPlayingstatus = DataStatus.isLoading;
   DataStatus popularStatus = DataStatus.isLoading;
   DataStatus topRatedstatus = DataStatus.isLoading;
   List<Movie> nowPlayingList = [];
   List<Movie> popularList = [];
   List<Movie> topRatedList = [];
+
+  changeSliverAppBarHeight() {
+    if (sliverAppBarHeight == AppNumbers.sliverLowHeight) {
+      sliverAppBarHeight = AppNumbers.sliverHighHeight;
+    } else {
+      sliverAppBarHeight = AppNumbers.sliverLowHeight;
+    }
+    emit(ExpandedSliverAppBarHeight());
+  }
 
   String errorReturn({String? errorMessage}) {
     String errorMessageVar = '';
@@ -50,7 +61,7 @@ class MovieCubit extends Cubit<MovieStates> {
     Either<Failure, List<Movie>> response =
         await getIt<BaseGetPopularMoviesUseCase>().excute();
     response.fold((l) {
-      emit(GetPopularError(messageError: l.message));
+      emit(GetPopularError(errorMessage: l.message));
       popularStatus = DataStatus.fail;
     }, (r) {
       emit(GetPopularSuccess());
@@ -64,7 +75,7 @@ class MovieCubit extends Cubit<MovieStates> {
     Either<Failure, List<Movie>> response =
         await getIt<BaseGetTopRatedMoviesUseCase>().excute();
     response.fold((l) {
-      emit(GetTopRatedError(messageError: l.message));
+      emit(GetTopRatedError(errorMessage: l.message));
       topRatedstatus = DataStatus.fail;
     }, (r) {
       emit(GetTopRatedSuccess());

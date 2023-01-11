@@ -17,6 +17,7 @@ class AppStrings {
       "Invalid API key: You must be granted a valid key.";
   static const String endPointNotFounded =
       "The resource you requested could not be found.";
+  static const String imageHeroTag = 'image_hero';
   static String getImageUrl(String pass) {
     return baseImagesUrl + pass;
   }

@@ -17,8 +17,8 @@ class GetPopularLoading extends MovieStates {}
 class GetPopularSuccess extends MovieStates {}
 
 class GetPopularError extends MovieStates {
-  final String messageError;
-  GetPopularError({required this.messageError});
+  final String errorMessage;
+  GetPopularError({required this.errorMessage});
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -27,6 +27,8 @@ class GetTopRatedLoading extends MovieStates {}
 class GetTopRatedSuccess extends MovieStates {}
 
 class GetTopRatedError extends MovieStates {
-  final String messageError;
-  GetTopRatedError({required this.messageError});
+  final String errorMessage;
+  GetTopRatedError({required this.errorMessage});
 }
+
+class ExpandedSliverAppBarHeight extends MovieStates {}
